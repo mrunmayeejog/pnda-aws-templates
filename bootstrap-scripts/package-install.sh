@@ -38,7 +38,7 @@ if [ "x$DISTRO" == "xubuntu" ]; then
   rm -rf /etc/apt/sources.list
   touch /etc/apt/sources.list
   echo "deb $PNDA_MIRROR/mirror_deb/ ./" > /etc/apt/sources.list
-  sed -i "1ideb $PNDA_MIRROR/mirror_deb/ ./" /etc/apt/sources.list
+  # sed -i "1ideb $PNDA_MIRROR/mirror_deb/ ./" /etc/apt/sources.list
   wget -O - $PNDA_MIRROR/mirror_deb/pnda.gpg.key | apt-key add -
 
 if [ "x$ADD_ONLINE_REPOS" == "xYES" ]; then
