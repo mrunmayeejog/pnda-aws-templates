@@ -33,7 +33,11 @@ fi
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 if [ "x$DISTRO" == "xubuntu" ]; then
   export DEBIAN_FRONTEND=noninteractive
-  # give the local mirror the first priority 
+  # give the local mirror the first priority
+  rm -rf /etc/apt/sources.list.d/*
+  rm -rf /etc/apt/sources.list
+  touch /etc/apt/sources.list
+  echo "deb $PNDA_MIRROR/mirror_deb/ ./" > /etc/apt/sources.list
   sed -i "1ideb $PNDA_MIRROR/mirror_deb/ ./" /etc/apt/sources.list
   wget -O - $PNDA_MIRROR/mirror_deb/pnda.gpg.key | apt-key add -
 
